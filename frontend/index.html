@@ -3,13 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP Full-Stack App on Vercel</title>
+    <title>Full-Stack App on Vercel</title>
+    <style>
+        body { font-family: sans-serif; padding: 2em; }
+        .card { border: 1px solid #ccc; border-radius: 8px; padding: 1em; margin-bottom: 1em; }
+        button { font-size: 1em; padding: 0.5em 1em; cursor: pointer; }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the PHP Full-Stack App!</h1>
-    <p>Message from the backend:</p>
-    <p id="message">Loading...</p>
+    <h1>Welcome!</h1>
+
+    <div class="card">
+        <h2>PHP Backend Status</h2>
+        <p>Message from PHP: <strong id="php-message">Loading...</strong></p>
+        <button onclick="fetchPhpMessage()">Refresh PHP Message</button>
+    </div>
+
+    <div class="card">
+        <h2>Create OxaPay Payment</h2>
+        <p>Click the button to generate a payment invoice for $10.</p>
+        <button onclick="createPaymentInvoice()">Pay $10 Now</button>
+        <p id="payment-status"></p>
+    </div>
 
     <script src="script.js"></script>
 </body>
-                                            </html>
+    </html>
