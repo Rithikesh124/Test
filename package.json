@@ -1,9 +1,8 @@
 {
-  "name": "vercel-payment-backend",
+  "name": "vercel-fullstack-app",
   "version": "1.0.0",
-  "description": "Handles payment processing",
-  "main": "api/create-payment.js",
+  "description": "A full-stack application with a payment backend",
   "dependencies": {
-    "axios": "^1.6.2"
+    "axios": "^1.7.2"
   }
 }
