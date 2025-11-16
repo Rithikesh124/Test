@@ -10,7 +10,7 @@ export default function handler(request, response) {
   }
 
   const data = {
-    message: 'Hello from the Node.js backend!',
+    message: 'Hello from the Developer boss',
     timestamp: new Date().toISOString(),
   };
 
