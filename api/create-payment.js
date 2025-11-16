@@ -1,4 +1,5 @@
-const axios = require('axios');
+// Use the direct path import that you discovered works reliably.
+const axios = require('axios/dist/node/axios.cjs');
 
 export default async function handler(request, response) {
   // Only allow POST requests
@@ -30,6 +31,7 @@ export default async function handler(request, response) {
     response.status(200).json(oxapayResponse.data);
 
   } catch (error) {
+    // Improved error logging to see what OxaPay is sending back
     console.error('OxaPay API Error:', error.response ? error.response.data : error.message);
     response.status(500).json({ message: 'Failed to create payment invoice.' });
   }
