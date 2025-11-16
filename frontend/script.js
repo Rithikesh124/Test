@@ -24,13 +24,12 @@ async function createPaymentInvoice() {
     const statusElement = document.getElementById('payment-status');
     statusElement.textContent = 'Creating invoice, please wait...';
 
-    // The URL of YOUR backend endpoint that you created
     const yourBackendUrl = '/api/create-payment';
 
     const paymentData = {
-       amount: 10, // Example: 10 USD
+       amount: 10,
        currency: "USD",
-       return_url: "https://github.com/success", // A dummy success URL
+       return_url: "https://github.com/success",
        order_id: `ORD-DEMO-${Date.now()}`,
        description: "Test payment"
     };
@@ -47,14 +46,18 @@ async function createPaymentInvoice() {
         }
 
         const result = await response.json();
-        console.log('Payment invoice created:', result);
+        console.log('Received response from backend:', result);
 
-        if (result.pay_link) {
+        // --- THE FIX IS HERE ---
+        // Check for result.data AND result.data.payment_url to safely access the nested property.
+        if (result.data && result.data.payment_url) {
             statusElement.textContent = `Success! Redirecting to payment page...`;
-            // Redirect the user to the OxaPay payment page
-            window.location.href = result.pay_link;
+            
+            // Redirect the user to the correct, nested payment URL.
+            window.location.href = result.data.payment_url;
         } else {
-             statusElement.textContent = `Error: ${result.message || 'Pay link not found.'}`;
+             // If the format is unexpected, show an error. Use the message from the API if available.
+             statusElement.textContent = `Error: ${result.error.message || 'Payment URL not found in response.'}`;
         }
 
     } catch (error) {
